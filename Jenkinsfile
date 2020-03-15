@@ -4,6 +4,7 @@ pipeline {
   /*** PIPELINE ENVIRONMENT ***/
   environment {
     BUCKET_NAME = 'www.rabegitops.it'
+    SLAVES_TEMPLATES_PATH = 'slaves'
   }
 
   /*** STAGES ***/
@@ -19,12 +20,14 @@ pipeline {
       }
 
       agent {
-        // execute on the 'kubectl slave' pod
-        label 'nodejs-slave' // image: node:alpine
+        // execute on the 'nodejs slave' pod
+        kubernetes {
+          yamlFile "${SLAVES_TEMPLATES_PATH}/nodejs-slave.yaml"
+        }
       }
 
       steps {
-        // select the 'kubectl' container
+        // select the 'nodejs' container
         container('nodejs') {
           sh """
             yarn install --frozen-lockfile
@@ -45,8 +48,10 @@ pipeline {
       }
 
       agent {
-        // execute on the 'amazon slave' pod
-        label 'amazon-slave' // image: mesosphere/aws-cli
+        // execute on the 'awscli slave' pod
+        kubernetes {
+          yamlFile "${SLAVES_TEMPLATES_PATH}/awscli-slave.yaml"
+        }
       }
 
       steps {
