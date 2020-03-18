@@ -1,24 +1,5 @@
-# rabe-gitops
+# Website
 
-## Project setup
-```
-yarn install
-```
+[![License](https://img.shields.io/github/license/rabe-gitops/website)](LICENSE)
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Repository containing the Rabe GitOps website source code
